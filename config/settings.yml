@@ -22,3 +22,6 @@ development:
 
 test: &testing
   <<: *defaults
+
+production:
+  <<: *defaults

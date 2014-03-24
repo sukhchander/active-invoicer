@@ -61,15 +61,15 @@ module ActiveInvoicer
 
     # Version of your assets, change this if you want to expire all your assets
     config.assets.version = '1.0'
-    
+
     # Load configuration files, with smtp settings.
     def config.from_file(file)
       super
-      
       action_mailer.delivery_method = :smtp
       action_mailer.smtp_settings = smtp_settings.inject({}){|memo,(k,v)| memo[k.to_sym] = v; memo}
     end
-    
     config.from_file 'settings.yml'
+
+    config.assets.initialize_on_precompile = false
   end
 end

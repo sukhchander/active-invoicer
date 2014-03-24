@@ -56,6 +56,8 @@ gem 'httparty'
 group :staging, :production do
   gem 'unicorn'
   gem 'rack-heartbeat'
+  gem 'pg'
+  gem 'rails_12factor'
 end
 
 group :development do
