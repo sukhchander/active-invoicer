@@ -1,0 +1,45 @@
+- invoice_message = <<MSG
+- -----------------------------
+- Invoice Summary
+- -----------------------------
+- Invoice Code: #{@invoice.code}
+- Issued: #{l @invoice.created_at, format: :short}
+- Due: #{l @invoice.due_date, format: :short}
+- Amount: #{number_to_currency @invoice.total}
+- Thank You!
+- -----------------------------
+- MSG
+
+= form_tag dispatch_invoice_admin_invoice_path(@invoice) do
+  %fieldset.inputs
+    %legend
+      %span Recipients
+    %ol
+      %li.string.required
+        = label_tag :recipients
+        = text_field_tag :recipients, @invoice.client.email
+        %p.inline-hints Comma-separated list of emails.
+      %li.boolean
+        %label{for: "send_copy"}
+          = check_box_tag :send_copy, "send"
+          Send me a copy
+  %fieldset.inputs
+    %legend
+      %span Message
+    %ol
+      %li.string.required
+        = label_tag :subject
+        = text_field_tag :subject, "Invoice ##{@invoice.code}"
+      %li.textarea.required
+        = label_tag :message
+        = text_area_tag :message, invoice_message, rows: 10
+      %li.boolean
+        %label{for: "attach_pdf"}
+          = check_box_tag :attach_pdf, "attach", true
+          Attach Invoice as PDF
+  %fieldset.buttons
+    %ol
+      %li.commit
+        = submit_tag "Send Invoice"
+      %li.cancel
+        = link_to "Cancel", admin_invoice_path(@invoice)

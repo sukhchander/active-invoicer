@@ -1,0 +1,24 @@
+defaults: &defaults
+  sender: from@example.org
+
+  smtp_settings:
+    :domain:         example.org
+    :address:        mail.mail.com
+    :port:           587
+    :authentication: :plain
+    :user_name:      username
+    :password:       password
+
+    :enable_starttls_auto: true
+
+    # Set to true if you have Net::SMTPSyntaxError errors when sending email.
+    # Rails has sometimes a problem when sending email from "Name <address@host.com>".
+    # If you are having problems sending email and your host is correctly configured,
+    # try setting safe_from to true. You may need to create a user account for no-reply@yourapp.com
+    :safe_from: false
+
+development:
+  <<: *defaults
+
+test: &testing
+  <<: *defaults

@@ -1,0 +1,10 @@
+form fieldset > ol > li.boolean label {
+  width: 20%;
+}
+
+ul#utility_nav > li {
+  display: inline-block;
+  margin-right: 4px;
+  font-size: 1.0em;
+  position: relative;
+}
