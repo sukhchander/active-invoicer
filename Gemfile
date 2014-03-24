@@ -4,6 +4,8 @@ gem 'rails', '3.2.17'
 
 gem 'mysql2'
 
+gem 'thin'
+
 gem 'memcachier'
 gem 'dalli'
 
@@ -61,7 +63,6 @@ group :staging, :production do
 end
 
 group :development do
-  gem 'thin'
   gem 'debugger'
   gem 'quiet_assets'
   gem 'meta_request'
